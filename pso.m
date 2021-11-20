@@ -1,7 +1,7 @@
 clc;
 clear;
 close all;
-%problem definiton
+
 CostFunction= @(x)Fonksiyon(x);
 NormFunction=@(x)Normalize(x);
 %Normal=@(x)Fonksiyon(x);
@@ -12,10 +12,8 @@ VarMax=[15 15 0.6 500];
 
 
 
-%Parameters For PSO
-
 MaxIt=300;
-nPop=50;%first pop¸lasyon_size
+nPop=50;%first pop√ºlasyon_size
 w=1;
 c1=2;
 c2=2;
@@ -29,7 +27,6 @@ empty_particle.Best.Cost=[];
 empty_particle.Norm=[];
 empty_particle.NormReg=[];
 
-%CreATE Population~
 particle=repmat(empty_particle,nPop,1);
 GlobalBest.Cost=inf;
 
@@ -45,9 +42,9 @@ for i=1:nPop
      %normalizasyon
      particle(i).Norm=NormFunction(particle(i).Position);
     particle(i).Velocity=zeros(VarSize);
-%%%---Error  
+%%%---Hata  
 particle(i).Cost=CostFunction(particle(i).Position);
-%%normalizasyon iÁin regerrasyon
+%%normalizasyon i√ßin regerrasyon
 particle(i).NormReg=CostFunction(particle(i).Norm);
 %update
  
@@ -107,15 +104,14 @@ for it=1:MaxIt
        end
     BestCosts(it)=GlobalBest.Cost;
  
-    disp(['iterasyon=' num2str(it):'En ›yi Sonuc=' num2str(BestCosts(it))]);
+    disp(['iterasyon=' num2str(it):'En √ùyi Sonuc=' num2str(BestCosts(it))]);
     
 end
 end
 %Results
 figure;
-%%semilogy(BestCosts,'LineWidth',2);
 plot(BestCosts,'LineWidth',2);
 xlabel('Iterasyon');
-ylabel('En ›yi');
+ylabel('En √ùyi');
 
 
